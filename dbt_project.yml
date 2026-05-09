@@ -1,0 +1,27 @@
+name: 'pii_toolkit'
+version: '0.1.0'
+config-version: 2
+
+require-dbt-version: [">=1.7.0", "<2.0.0"]
+
+profile: 'pii_toolkit'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+vars:
+  pii_salt: "REPLACE_ME_WITH_PROJECT_SPECIFIC_SALT"
+  pii_audit_log_schema: "pii_audit"
+  pii_audit_log_enabled: true
+
+models:
+  pii_toolkit:
+    +materialized: view
